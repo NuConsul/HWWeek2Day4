@@ -31,27 +31,30 @@ import android.view.View ;
 import android.widget.TextView ;
 import java.util.ArrayList ;
 
-import static com.example.hwweek2day4.DataEntryActivity.KEY_User_RESULT;
+import static com.example.hwweek2day4.DataEntryActivity.KEY_USER_RESULT ;
 
 public class MainActivity extends AppCompatActivity {
 
     //Constant for request code
     public static final int REQUEST_CODE_FOR_MAIN = 426 ;
     public static final String KEY_SHARED_PREF = "shared_pref" ;
-    public static final String KEY_LAST_ENTERED_MAKE = "last_make" ;
-    public static final String KEY_LAST_ENTERED_MODEL = "last_model" ;
+    public static final String KEY_LAST_ENTERED_NAME = "last_name" ;
+    public static final String KEY_LAST_ENTERED_ADDRESS = "last_address" ;
 
     //Two ways of starting an activity
     //startActivity which -- starts an Activity
     //or startActivityForResult -- which starts an activity for the purpose of a result to bring
     //back to the initial activity
 
-    TextView tvUserMakeDisplay, tvUserModelDisplay, tvUserYearDisplay, tvUserColorDisplay, tvUserTitleStatusDisplay ;
+    TextView tvUserNameDisplay, tvUserAddressDisplay, tvUserCityDisplay ;
+    TextView tvUserStateDisplay, tvUserZipCodeDisplay, tvUserPhoneNumberDisplay, tvUserEmailAddressDisplay ;
+
+
+
     //Shared Preferences Object
     SharedPreferences sharedPreferences ;
 
     UserDatabaseHelper userDatabaseHelper ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +69,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void bindViews() {
-        tvUserMakeDisplay = (TextView) findViewById(R.id.tvUserMake) ;
-        tvUserModelDisplay = (TextView) findViewById(R.id.tvUserModel) ;
-        tvUserYearDisplay = (TextView) findViewById(R.id.tvUserYear) ;
-        tvUserColorDisplay = (TextView) findViewById(R.id.tvUserColor) ;
-        tvUserTitleStatusDisplay = (TextView) findViewById(R.id.tvUserTitleStatus) ;
+        tvUserNameDisplay = (TextView) findViewById(R.id.tvUserNameDisplay) ;
+        tvUserAddressDisplay = (TextView) findViewById(R.id.tvUserAddressDisplay) ;
+        tvUserCityDisplay = (TextView) findViewById(R.id.tvUserCityDisplay) ;
+        tvUserStateDisplay = (TextView) findViewById(R.id.tvUserStateDisplay) ;
+        tvUserZipCodeDisplay = (TextView) findViewById(R.id.tvUserZipCodeDisplay) ;
+        tvUserPhoneNumberDisplay = (TextView) findViewById(R.id.tvUserPhoneNumberDisplay) ;
+        tvUserEmailAddressDisplay = (TextView) findViewById(R.id.tvUserEmailAddressDisplay) ;
     }
-
 
     //@param User User info to populate
     //@return void
-    public void populateTextViews(@NonNull User UserInfoToPopulate) {
-        tvUserMakeDisplay.setText(UserInfoToPopulate.getUserMake()) ;
-        tvUserModelDisplay.setText(UserInfoToPopulate.getUserModel()) ;
-        tvUserYearDisplay.setText(UserInfoToPopulate.getUserYear()) ;
-        tvUserColorDisplay.setText(UserInfoToPopulate.getUserColor()) ;
-        tvUserTitleStatusDisplay.setText(UserInfoToPopulate.getUserTitleStatus()) ;
+    public void populateTextViews(@NonNull User userInfoToPopulate) {
+        tvUserNameDisplay.setText(userInfoToPopulate.getName()) ;
+        tvUserAddressDisplay.setText(userInfoToPopulate.getAddress()) ;
+        tvUserCityDisplay.setText(userInfoToPopulate.getCity()) ;
+        tvUserStateDisplay.setText(userInfoToPopulate.getState()) ;
+        tvUserZipCodeDisplay.setText(userInfoToPopulate.getZipCode()) ;
+        tvUserPhoneNumberDisplay.setText(userInfoToPopulate.getPhoneNumber()) ;
+        tvUserEmailAddressDisplay.setText(userInfoToPopulate.getEmailAddress()) ;
     }
+
 
 
 
@@ -96,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ApplySharedPref")
     public void saveMakeModelToSharedPref(@NonNull User User) {
         SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit() ;
-        sharedPrefEditor.putString(KEY_LAST_ENTERED_MAKE, User.getUserMake()) ;
-        sharedPrefEditor.putString(KEY_LAST_ENTERED_MODEL, User.getUserModel()) ;
+        sharedPrefEditor.putString(KEY_LAST_ENTERED_NAME, User.getName()) ;
+        sharedPrefEditor.putString(KEY_LAST_ENTERED_ADDRESS, User.getAddress()) ;
         sharedPrefEditor.commit() ;
     }
 
@@ -109,21 +116,21 @@ public class MainActivity extends AppCompatActivity {
     public void saveAndLogUserInSharedPref(@NonNull User User) {
 
         //Get old values saved in pref
-        String make = sharedPreferences.getString(KEY_LAST_ENTERED_MAKE, "NO VALUE ENTERED") ;
-        String model = sharedPreferences.getString(KEY_LAST_ENTERED_MODEL, "NO VALUE ENTERED") ;
+        String name = sharedPreferences.getString(KEY_LAST_ENTERED_NAME, "NO VALUE ENTERED") ;
+        String address = sharedPreferences.getString(KEY_LAST_ENTERED_ADDRESS, "NO VALUE ENTERED") ;
 
         //Log the old values
-        Log.d("TAG", "saveAndLogUserInSharedPref: IN SHARED PREF: make = " + make + " | model = " + model) ;
+        Log.d("TAG", "saveAndLogUserInSharedPref: IN SHARED PREF: name = " + name + " | address = " + address) ;
 
         //Save new values to shared pref
         saveMakeModelToSharedPref(User) ;
 
         //get new values
-        make = sharedPreferences.getString(KEY_LAST_ENTERED_MAKE, "NO VALUE ENTERED") ;
-        model = sharedPreferences.getString(KEY_LAST_ENTERED_MODEL, "NO VALUE ENTERED") ;
+        name = sharedPreferences.getString(KEY_LAST_ENTERED_NAME, "NO VALUE ENTERED") ;
+        address = sharedPreferences.getString(KEY_LAST_ENTERED_ADDRESS, "NO VALUE ENTERED") ;
 
         //log the new values
-        Log.d("TAG", "saveAndLogUserInSharedPref: IN SHARED PREF: make = " + make + " | model = " + model) ;
+        Log.d("TAG", "saveAndLogUserInSharedPref: IN SHARED PREF: name = " + name + " | address = " + address) ;
 
     }
 

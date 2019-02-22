@@ -9,10 +9,10 @@ public class User implements Parcelable {
     private String address ;
     private String city ;
     private String state ;
-    private int zipCode ;
-    private int phoneNumber ;
+    private String zipCode ;
+    private String phoneNumber ;
     private String emailAddress ;
-
+    private int id ;
 
 
     protected User(Parcel in) {
@@ -20,9 +20,10 @@ public class User implements Parcelable {
         address = in.readString();
         city = in.readString();
         state = in.readString();
-        zipCode = in.readInt();
-        phoneNumber = in.readInt();
+        zipCode = in.readString();
+        phoneNumber = in.readString();
         emailAddress = in.readString();
+        id = in.readInt() ;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -37,7 +38,7 @@ public class User implements Parcelable {
         }
     };
 
-    public User(String name, String address, String city, String state, int zipCode, int phoneNumber, String emailAddress) {
+    public User(String name, String address, String city, String state, String zipCode, String phoneNumber, String emailAddress, int id) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -45,6 +46,7 @@ public class User implements Parcelable {
         this.zipCode = zipCode;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
+        this.id = id ;
     }
 
     public User() {
@@ -61,10 +63,11 @@ public class User implements Parcelable {
         dest.writeString(address);
         dest.writeString(city);
         dest.writeString(state);
-        dest.writeInt(zipCode);
-        dest.writeInt(phoneNumber);
+        dest.writeString(zipCode);
+        dest.writeString(phoneNumber);
         dest.writeString(emailAddress);
-    }
+        dest.writeInt(id) ;
+     }
 
     public String getName() {
         return name;
@@ -98,19 +101,19 @@ public class User implements Parcelable {
         this.state = state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -121,6 +124,16 @@ public class User implements Parcelable {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    public int getId() {
+        return id ;
+    }
+
+    public void setId(int id) {
+        this.id = id ;
+    }
+
+
 
     public static Creator<User> getCREATOR() {
         return CREATOR;

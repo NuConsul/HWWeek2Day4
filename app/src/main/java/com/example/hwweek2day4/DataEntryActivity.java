@@ -11,10 +11,11 @@ import android.widget.EditText ;
 public class DataEntryActivity extends Activity {
 
     //Constants
-    public static final String KEY_User_RESULT = "User_result" ;
+    public static final String KEY_USER_RESULT = "User_result" ;
     public static final int RESULT_CODE = 580 ;
 
-    EditText etUserMake, etUserModel, etUserYear, etUserColor, etUserTitle ;
+
+    EditText etUserName, etUserAddress, etUserCity, etUserState, etUserZipCode, etUserPhoneNumber, etUserEmailAddress ;
     Intent sentIntent  ;
 
     @Override
@@ -26,11 +27,13 @@ public class DataEntryActivity extends Activity {
     }
 
     public void bindViews() {
-        etUserMake = (EditText) findViewById(R.id.etUserMake)  ;
-        etUserModel = (EditText) findViewById(R.id.etUserModel) ;
-        etUserYear = (EditText) findViewById(R.id.etUserYear) ;
-        etUserColor = (EditText) findViewById(R.id.etUserColor) ;
-        etUserTitle = (EditText) findViewById(R.id.etUserTitleStatus) ;
+        etUserName = (EditText) findViewById(R.id.etUserName)  ;
+        etUserAddress = (EditText) findViewById(R.id.etUserAddress) ;
+        etUserCity = (EditText) findViewById(R.id.etUserCity) ;
+        etUserState = (EditText) findViewById(R.id.etUserState) ;
+        etUserZipCode = (EditText) findViewById(R.id.etUserZipCode) ;
+        etUserPhoneNumber = (EditText) findViewById(R.id.etUserPhoneNumber) ;
+        etUserEmailAddress = (EditText) findViewById(R.id.etUserEmailAddress) ;
     }
 
     //Create User Object
@@ -39,11 +42,13 @@ public class DataEntryActivity extends Activity {
     public User generateUserObjectFromInput() {
         User returnUser = new User() ;  //the User we will return from method
         //Set-up User object
-        returnUser.setUserMake(etUserMake.getText() != null ? etUserMake.getText().toString() : "") ;
-        returnUser.setUserModel(etUserModel.getText() != null ? etUserModel.getText().toString() : "") ;
-        returnUser.setUserYear(etUserYear.getText() != null ? etUserYear.getText().toString() : "") ;
-        returnUser.setUserColor(etUserColor.getText() != null ? etUserColor.getText().toString() : "") ;
-        returnUser.setUserTitleStatus(etUserTitle.getText() != null ? etUserTitle.getText().toString() : ""); ;
+        returnUser.setName(etUserName.getText() != null ? etUserName.getText().toString() : "") ;
+        returnUser.setAddress(etUserAddress.getText() != null ? etUserAddress.getText().toString() : "") ;
+        returnUser.setCity(etUserCity.getText() != null ? etUserCity.getText().toString() : "") ;
+        returnUser.setState(etUserState.getText() != null ? etUserState.getText().toString() : "") ;
+        returnUser.setZipCode(etUserZipCode.getText() != null ? etUserZipCode.getText().toString() : "") ;
+        returnUser.setPhoneNumber(etUserPhoneNumber.getText() != null ? etUserPhoneNumber.getText().toString() : " ") ;
+        returnUser.setEmailAddress(etUserEmailAddress.getText() != null ? etUserEmailAddress.getText().toString() : " ") ;
 
         return returnUser ;
 
@@ -51,9 +56,10 @@ public class DataEntryActivity extends Activity {
     }
 
     public void onClickDataEntryActivity(View view) {
+
         User UserResult = generateUserObjectFromInput() ;
         Bundle bundleOfTheUserResult = new Bundle() ;
-        bundleOfTheUserResult.putParcelable(KEY_User_RESULT, UserResult) ; //put User object in bundle
+        bundleOfTheUserResult.putParcelable(KEY_USER_RESULT, UserResult) ; //put User object in bundle
         sentIntent.putExtras(bundleOfTheUserResult) ; //attach the result bundle to the intent
         setResult(RESULT_CODE, sentIntent) ; //send back bundle with result to activity which called it for result
         finish() ; //Make sure the activity is flagged to be destroyed

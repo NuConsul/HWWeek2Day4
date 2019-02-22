@@ -63,24 +63,17 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         //Data holder/container/variable used for database key value pairs
         ContentValues contentValues = new ContentValues() ;
 
-        /*
-        import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_NAME ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_ADDRESS ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_CITY ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_STATE ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_ZIPCODE ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_PHONENUMBER ;
-import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_EMAILADDRESS
-         */
+
 
         //insert key value paris into the contentValues variable
-        contentValues.put(COLUMN_NAME, User.getUserName()) ;
-        contentValues.put(COLUMN_ADDRESS, User.getUserAddress()) ;
-        contentValues.put(COLUMN_CITY, User.getUserCity()) ;
-        contentValues.put(COLUMN_STATE, User.getUserState()) ;
-        contentValues.put(COLUMN_ZIPCODE, User.getUserZipcode()) ;
-        contentValues.put(COLUMN_PHONENUMBER, User.getUserPhoneNumber()) ;
-        contentValues.put(COLUMN_EMAILADDRESS, User.getUserEmailAddress()) ;
+        contentValues.put(COLUMN_NAME, User.getName()) ;
+        contentValues.put(COLUMN_ADDRESS, User.getAddress()) ;
+        contentValues.put(COLUMN_CITY, User.getCity()) ;
+        contentValues.put(COLUMN_STATE, User.getState()) ;
+        contentValues.put(COLUMN_ZIPCODE, User.getZipCode()) ;
+        contentValues.put(COLUMN_PHONENUMBER, User.getPhoneNumber()) ;
+        contentValues.put(COLUMN_EMAILADDRESS, User.getEmailAddress()) ;
+        contentValues.put(COLUMN_ID, User.getId()) ;
 
 
         //insert the User into the table using contentValues
@@ -101,21 +94,25 @@ import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_EMAILADDRESS
             //while we have results, get the values and place in list
             do {
                 int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID)) ;
-                String make = cursor.getString(cursor.getColumnIndex(COLUMN_MAKE)) ;
-                String model = cursor.getString(cursor.getColumnIndex(COLUMN_MODEL)) ;
-                String year = cursor.getString(cursor.getColumnIndex(COLUMN_YEAR)) ;
-                String color = cursor.getString(cursor.getColumnIndex(COLUMN_COLOR)) ;
-                String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)) ;
+                String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME)) ;
+                String address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)) ;
+                String city = cursor.getString(cursor.getColumnIndex(COLUMN_CITY)) ;
+                String state = cursor.getString(cursor.getColumnIndex(COLUMN_STATE)) ;
+                String zipCode = cursor.getString(cursor.getColumnIndex(COLUMN_ZIPCODE)) ;
+                String phoneNumber = cursor.getString(cursor.getColumnIndex(COLUMN_PHONENUMBER)) ;
+                String emailAddress = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)) ;
+
+
 
                 //add to list
-                returnUserList.add(new User(make, model, year, color, title, id)) ;
+                returnUserList.add(new User(name, address, city, state, zipCode, phoneNumber, emailAddress, id)) ;
 
 
             } while(cursor.moveToNext()) ;
         }
 
 
-        //String name, String address, String city, String state, int zipCode, int phoneNumber, String emailAddress
+        //
 
         cursor.close() ;
         //return the result in a list
@@ -135,15 +132,18 @@ import static com.example.hwweek2day4.UserDatabaseContract.COLUMN_EMAILADDRESS
         if(cursor.moveToFirst()) {
 
             int idFromDB = cursor.getInt(cursor.getColumnIndex(COLUMN_ID)) ;
-            String make = cursor.getString(cursor.getColumnIndex(COLUMN_MAKE)) ;
-            String model = cursor.getString(cursor.getColumnIndex(COLUMN_MODEL)) ;
-            String year = cursor.getString(cursor.getColumnIndex(COLUMN_YEAR)) ;
-            String color = cursor.getString(cursor.getColumnIndex(COLUMN_COLOR)) ;
-            String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)) ;
+            String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME)) ;
+            String address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)) ;
+            String city = cursor.getString(cursor.getColumnIndex(COLUMN_CITY)) ;
+            String state = cursor.getString(cursor.getColumnIndex(COLUMN_STATE)) ;
+            String zipCode = cursor.getString(cursor.getColumnIndex(COLUMN_ZIPCODE)) ;
+            String phoneNumber = cursor.getString(cursor.getColumnIndex(COLUMN_PHONENUMBER)) ;
+            String emailAddress = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)) ;
 
             //set return User
-            returnUser = new User(make, model, year, color, title, idFromDB) ;
+            returnUser = new User(name, address, city, state, zipCode, phoneNumber, emailAddress, idFromDB) ;
         }
+
 
         cursor.close() ;
         return returnUser ;

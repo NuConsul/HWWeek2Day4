@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DataEntryActivity">
-
-</android.support.constraint.ConstraintLayout>
-
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,52 +8,74 @@
     tools:context=".DataEntryActivity">
 
 
+
     <EditText
-        android:id="@+id/etCarMake"
+        android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/standard_font_size"
         android:textColor="#33D6FF"
         android:textStyle="italic"
-        android:hint="@string/car_make"/>
+        android:hint="@string/user_name"/>
 
     <EditText
-        android:id="@+id/etCarModel"
+        android:id="@+id/etUserAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/standard_font_size"
         android:textColor="#33D6FF"
         android:textStyle="italic"
-        android:hint="@string/car_model"/>
+        android:hint="@string/user_address"/>
 
 
     <EditText
-        android:id="@+id/etCarYear"
+        android:id="@+id/etUserCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/standard_font_size"
         android:textColor="#33D6FF"
         android:textStyle="italic"
-        android:hint="@string/car_year"/>
+        android:hint="@string/user_city"/>
+
 
     <EditText
-        android:id="@+id/etCarColor"
+        android:id="@+id/etUserState"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/standard_font_size"
         android:textColor="#33D6FF"
         android:textStyle="italic"
-        android:hint="@string/car_color"/>
-
+        android:hint="@string/user_state"/>
 
     <EditText
-        android:id="@+id/etCarTitleStatus"
+        android:id="@+id/etUserZipCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/standard_font_size"
         android:textColor="#33D6FF"
         android:textStyle="italic"
-        android:hint="@string/car_title_status"/>
+        android:hint="@string/user_zip_code"/>
+
+    <EditText
+        android:id="@+id/etUserPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/standard_font_size"
+        android:textColor="#33D6FF"
+        android:textStyle="italic"
+        android:hint="@string/user_phone_number"/>
+
+
+    <EditText
+        android:id="@+id/etUserEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/standard_font_size"
+        android:textColor="#33D6FF"
+        android:textStyle="italic"
+        android:hint="@string/user_email_address"/>
+
+
 
     <Button
         android:id="@+id/btnSendResult"
@@ -78,5 +87,3 @@
 
 
 </LinearLayout>
-
--->

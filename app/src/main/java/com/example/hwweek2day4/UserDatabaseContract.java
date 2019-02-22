@@ -42,13 +42,14 @@ public class UserDatabaseContract {
         queryBuilder.append(COLUMN_STATE) ;
         queryBuilder.append(" TEXT, ") ;
         queryBuilder.append(COLUMN_ZIPCODE) ;
+        queryBuilder.append(" TEXT, ") ;
+        queryBuilder.append(COLUMN_PHONENUMBER) ;
+        queryBuilder.append(" TEXT, ") ;
+        queryBuilder.append(COLUMN_EMAILADDRESS) ;
         queryBuilder.append(" TEXT ) ") ;
 
-        /*
-        COLUMN_PHONENUMBER ;
-        COLUMN_EMAILADDRESS;
-        TABLE_NAME
-         */
+
+
 
         //Log the query so we can check for correctness
         Log.d("TAG", "createQuery: " + queryBuilder.toString()) ;
@@ -59,13 +60,13 @@ public class UserDatabaseContract {
 
 
 
-    public static String getAllCarsQuery() {
+    public static String getAllUsersQuery() {
         return "SELECT * FROM " + TABLE_NAME ;
     }
 
 
     @SuppressLint("DefaultLocale")
-    public static String getOneCarById(int id) {
+    public static String getOneUserById(int id) {
         return String.format("SELECT * FROM %s WHERE %s = \"%d\"", TABLE_NAME, COLUMN_ID, id) ;
         //return "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " ;
     }
